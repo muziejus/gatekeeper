@@ -4,7 +4,8 @@ var url     = require('url'),
     fs      = require('fs'),
     qs      = require('querystring'),
     express = require('express'),
-    app     = express();
+    app     = express(),
+    port    = process.env.PORT || 3000;
 
 var TRUNCATE_THRESHOLD = 10,
     REVEALED_CHARS = 3,
@@ -101,6 +102,10 @@ app.get('/authenticate/:code', function(req, res) {
     }
     res.json(result);
   });
+});
+
+app.listen(port, function() {
+  console.log(`Listening on port ${port}`);
 });
 
 module.exports.config = config;
